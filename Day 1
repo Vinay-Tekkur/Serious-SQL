@@ -1,0 +1,21 @@
+-- What was the latest payment_date of all dvd rentals in the payment table?
+SELECT payment_date FROM dvd_rentals.payment
+ORDER BY payment_date DESC
+LIMIT 1
+
+-- How many recods exists in film_list table
+SELECT COUNT(*) as row_count FROM dvd_rentals.film_list;
+
+-- what are the unique values for the rating column in the film table?
+SELECT DISTINCT rating FROM dvd_rentals.film;
+
+-- How many unique category values are there in film_list table?
+SELECT COUNT(DISTINCT category) AS unique_category_count FROM dvd_rentals.film_list;
+
+-- what is the frequency of values in the rating column in the film_list table
+SELECT rating, COUNT(*) as frequency FROM dvd_rentals.film_list
+GROUP BY rating;
+
+SELECT rating, COUNT(*) as frequency, ROUND(COUNT(*) / SUM(COUNT(*)) OVER(),2) as percentage
+FROM dvd_rentals.film_list
+GROUP BY rating;
